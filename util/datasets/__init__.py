@@ -43,7 +43,7 @@ acronyms = {
     'camvid': 'camvid'
 }
 
-dir = 'C:/Users/Admin/Desktop/NasUnet/train_tiny_data/imgseg'
+dir = '../input/pascal-voc-2012'
 #=
 #dir = '../../../training_data/imageSeg/'
 
