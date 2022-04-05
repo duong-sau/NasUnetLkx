@@ -17,7 +17,7 @@ class VOCSegmentation(BaseDataset):
     NUM_CLASS = 21
     IN_CHANNELS = 3
     CROP_SIZE = 256
-    BASE_DIR = 'VOCdevkit/VOC2012'
+    BASE_DIR = 'VOC2012'
     CLASS_WEIGHTS = None
     def __init__(self, root=os.path.expanduser('~/.encoding/data'), split='train', mode=None):
 
