@@ -344,7 +344,7 @@ def get_test_list(base_path):
 
 class Promise12(BaseDataset):
     IN_CHANNELS = 1
-    BASE_DIR = 'PROMISE2012'
+    BASE_DIR = 'PROMISE2012aa'
     TRAIN_IMAGE_DIR = 'TrainingData'
     VAL_IMAGE_DIR = 'TestData'
     NUM_CLASS = 2
