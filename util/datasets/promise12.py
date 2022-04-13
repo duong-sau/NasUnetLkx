@@ -356,7 +356,7 @@ class Promise12(BaseDataset):
         self.mode = mode
         #self.joint_transform = joint_transform
         #root = root + '/' + self.BASE_DIR
-        root = self.BASE_DIR
+        root = '../input/promise12-testdata'
         self.joint_transform = Compose([
             RandomTranslate(offset=(0.2, 0.1)),
             RandomVerticallyFlip(),
