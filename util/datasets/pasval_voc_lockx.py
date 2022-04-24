@@ -18,17 +18,17 @@ class VOCLocKxSegmentation(BaseDataset):
     CROP_SIZE = 256
     BASE_DIR = './input/'
     CLASS_WEIGHTS = None
-    INPUT = '/kaggle/input/seismic-facies'
+    INPUT = '/kaggle/input'
     def __init__(self, root='/input/', split='train', mode=None):
 
         super(VOCLocKxSegmentation, self).__init__(root, split, mode)
         _voc_root = os.path.join(self.BASE_DIR)
         train_path = os.path.join(_voc_root, 'data_train.npz')
         labels_path = os.path.join(_voc_root, 'labels_train.npz')
-        m_train_dataset = np.load( self.INPUT + '/data_train.npz', allow_pickle=True, mmap_mode='r')['data']
-        m_train_labels = np.load(self.INPUT + '/labels_train.npz', allow_pickle=True, mmap_mode='r')['labels']
-        m_test_dataset = np.load(self.INPUT + '/data_test_1.npz', allow_pickle=True, mmap_mode='r')['data']
-        m_test_labels = np.load( self.INPUT + '/sample_submission_1.npz', allow_pickle=True, mmap_mode='r')['prediction']
+        m_train_dataset = np.load( self.INPUT + '/seismic-facies/data_train.npz', allow_pickle=True, mmap_mode='r')['data']
+        m_train_labels = np.load(self.INPUT + '/seismic-facies/labels_train.npz', allow_pickle=True, mmap_mode='r')['labels']
+        m_test_dataset = np.load(self.INPUT + '/seismic-facies/data_test_1.npz', allow_pickle=True, mmap_mode='r')['data']
+        m_test_labels = np.load( self.INPUT + '/seimic-data/sample_submission_1.npz', allow_pickle=True, mmap_mode='r')['prediction']
 
         print("Run NAS UNet from LOC KX")
         self.joint_transform = None
