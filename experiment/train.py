@@ -300,8 +300,8 @@ class Network(object):
 
             self.model_optimizer.zero_grad()
 
-            input = input.cuda(self.device)
-            target = target.cuda(self.device)
+            input = input.cuda(self.device).float()
+            target = target.cuda(self.device).long()
 
             # Note: if aux is True, predicts will be a list predicts = [pred, aux_pred], otherwise [pred]
             # so predicts[0] is original pred
@@ -346,8 +346,8 @@ class Network(object):
         tbar = tqdm(self.valid_queue)
         with torch.no_grad():
             for step, (input, target) in enumerate(tbar):
-                input = input.cuda(self.device)
-                target = target.cuda(self.device)
+                input = input.cuda(self.device).float()
+                target = target.cuda(self.device).long()
                 predicts = self.model(input)
 
                 val_loss = self.criterion(predicts if self.aux else predicts[0], target)
