@@ -27,7 +27,7 @@ class VOCLocKxSegmentation(BaseDataset):
         labels_path = os.path.join(_voc_root, 'labels_train.npz')
         m_train_dataset = np.load( self.INPUT + '/data_train.npz', allow_pickle=True, mmap_mode='r')['data']
         m_train_labels = np.load(self.INPUT + '/labels_train.npz', allow_pickle=True, mmap_mode='r')['labels']
-
+        print("Run NAS UNet from LOC KX")
         self.joint_transform = None
 
         if self.mode == 'train':
