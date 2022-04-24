@@ -10,12 +10,13 @@ from .ultrasound_nerve import UltraNerve
 from .bladder import Bladder
 from .chaos import CHAOS
 from .promise12 import Promise12
+from .pasval_voc_lockx import VOCLocKxSegmentation
 from .camvid import  CamVid
 
 datasets = {
     'coco': COCOSegmentation,
     'ade20k': ADE20KSegmentation,
-    'pascal_voc': VOCSegmentation,
+    'pascal_voc': VOCLocKxSegmentation,
     'pascal_aug': VOCAugSegmentation,
     'pcontext': ContextSegmentation,
     'minc': MINCDataset,
@@ -43,7 +44,7 @@ acronyms = {
     'camvid': 'camvid'
 }
 
-dir = '../input/pascal-voc-2012'
+dir = '/train_tiny_data/imgseg/'
 #=
 #dir = '../../../training_data/imageSeg/'
 
