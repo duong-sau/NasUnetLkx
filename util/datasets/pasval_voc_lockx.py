@@ -41,8 +41,6 @@ class VOCLocKxSegmentation(BaseDataset):
         #     else:
         #         test_data.append(m_train_dataset[i])
         #         test_label.append(m_train_labels)
-        # print(f"train size: + data={len(train_data)}, label={len(train_label)}")
-        # print(f"test  size: + data={len(test_data)} , label={len(test_label)}")
         # m_test_dataset = np.load(self.INPUT + '/seismic-facies/data_test_1.npz', allow_pickle=True, mmap_mode='r')['data']
         # m_test_labels = np.load( self.INPUT + '/seimic-data/sample_submission_1.npz', allow_pickle=True, mmap_mode='r')['prediction']
         m_train_dataset1, m_test_dataset, m_train_labels1, m_test_labels = train_test_split(
@@ -53,9 +51,13 @@ class VOCLocKxSegmentation(BaseDataset):
         if self.mode == 'train':
             self.train_dataset = m_train_dataset1
             self.train_labels = m_train_labels1
+            print(f"train size: + data={len(self.train_dataset)}, label={len(self.train_labels)}")
+            print(f"test  size: + data={len(m_test_dataset)}, label={len(m_test_labels)}")
         elif self.mode == 'val':
             self.train_dataset = m_test_dataset
             self.train_labels = m_test_labels
+            print(f"train size: + data={len(m_train_dataset1)}, label={len(m_train_labels1)}")
+            print(f"test  size: + data={len(m_test_dataset)}, label={len(m_test_labels)}")
         # elif self.mode == 'test':
         #     self.images = []
         #     return
