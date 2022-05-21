@@ -31,17 +31,17 @@ class VOCLocKxSegmentation(BaseDataset):
         m_train_labels = np.load(self.INPUT + '/seismic-facies/labels_train.npz', allow_pickle=True, mmap_mode='r')[
             'labels']
 
-        train_data, test_data, train_label, test_label = [], [], [], []
-        for i in range(len(m_train_dataset)):
-            prop = np.random.choice(np.arange(0, 2), p=[0.2, 0.8])
-            if prop == 1:
-                train_data.append(m_train_dataset[i])
-                train_label.append(m_train_labels)
-            else:
-                test_data.append(m_train_dataset[i])
-                test_label.append(m_train_labels)
-        print(f"train size: + data={len(train_data)}, label={len(train_label)}")
-        print(f"test  size: + data={len(test_data)} , label={len(test_label)}")
+        # train_data, test_data, train_label, test_label = [], [], [], []
+        # for i in range(len(m_train_dataset)):
+        #     prop = np.random.choice(np.arange(0, 2), p=[0.2, 0.8])
+        #     if prop == 1:
+        #         train_data.append(m_train_dataset[i])
+        #         train_label.append(m_train_labels)
+        #     else:
+        #         test_data.append(m_train_dataset[i])
+        #         test_label.append(m_train_labels)
+        # print(f"train size: + data={len(train_data)}, label={len(train_label)}")
+        # print(f"test  size: + data={len(test_data)} , label={len(test_label)}")
         # m_test_dataset = np.load(self.INPUT + '/seismic-facies/data_test_1.npz', allow_pickle=True, mmap_mode='r')['data']
         # m_test_labels = np.load( self.INPUT + '/seimic-data/sample_submission_1.npz', allow_pickle=True, mmap_mode='r')['prediction']
 
@@ -51,9 +51,9 @@ class VOCLocKxSegmentation(BaseDataset):
         if self.mode == 'train':
             self.train_dataset = m_train_dataset
             self.train_labels = m_train_labels
-        elif self.mode == 'val':
-            self.train_dataset = m_train_dataset
-            self.train_labels = m_train_labels
+        # elif self.mode == 'val':
+        #     self.train_dataset = m_train_dataset
+        #     self.train_labels = m_train_labels
         # elif self.mode == 'test':
         #     self.images = []
         #     return

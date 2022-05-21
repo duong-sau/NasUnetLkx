@@ -81,7 +81,7 @@ class Network(object):
 
     def _init_dataset(self):
         trainset = get_dataset(self.cfg['data']['dataset'], split='train', mode='train')
-        valset = get_dataset(self.cfg['data']['dataset'], split='val', mode ='val')
+        # valset = get_dataset(self.cfg['data']['dataset'], split='val', mode ='val')
         # testset = get_dataset(self.cfg['data']['dataset'], split='test', mode='test')
         self.nweight = trainset.class_weight
         print('dataset weights: {}'.format(self.nweight))
@@ -90,7 +90,7 @@ class Network(object):
         kwargs = {'num_workers': self.cfg['training']['n_workers'], 'pin_memory': True}
 
         # Split val dataset
-        if self.cfg['data']['dataset'] in ['bladder', 'chaos', 'ultrasound_nerve']:
+        if self.cfg['data']['dataset'] in ['bladder', 'chaos', 'ultrasound_nerve', 'pascal_voc']:
             num_train = len(trainset)
             indices = list(range(num_train))
             split = int(np.floor(0.8 * num_train))
@@ -103,6 +103,8 @@ class Network(object):
                                                sampler=torch.utils.data.sampler.SubsetRandomSampler(
                                                    indices[split:num_train]),
                                                **kwargs)
+            print(f"train size: + data={len(self.train_queue)}, label={len(self.train_queue)}")
+            print(f"test  size: + data={self.valid_queue}, label={self.valid_queue}")
         else:
             self.train_queue = data.DataLoader(trainset, batch_size=self.batch_size,
                                                drop_last=True, shuffle=True, **kwargs)
