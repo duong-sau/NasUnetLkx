@@ -81,7 +81,7 @@ class Network(object):
 
     def _init_dataset(self):
         trainset = get_dataset(self.cfg['data']['dataset'], split='train', mode='train')
-        # valset = get_dataset(self.cfg['data']['dataset'], split='val', mode ='val')
+        valset = get_dataset(self.cfg['data']['dataset'], split='val', mode ='val')
         # testset = get_dataset(self.cfg['data']['dataset'], split='test', mode='test')
         self.nweight = trainset.class_weight
         print('dataset weights: {}'.format(self.nweight))
@@ -90,7 +90,8 @@ class Network(object):
         kwargs = {'num_workers': self.cfg['training']['n_workers'], 'pin_memory': True}
 
         # Split val dataset
-        if self.cfg['data']['dataset'] in ['bladder', 'chaos', 'ultrasound_nerve', 'pascal_voc']:
+        # if self.cfg['data']['dataset'] in ['bladder', 'chaos', 'ultrasound_nerve', 'pascal_voc']:
+        if self.cfg['data']['dataset'] in ['bladder', 'chaos', 'ultrasound_nerve']:
             num_train = len(trainset)
             indices = list(range(num_train))
             split = int(np.floor(0.8 * num_train))

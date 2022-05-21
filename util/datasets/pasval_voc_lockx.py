@@ -4,6 +4,7 @@ import random
 import numpy as np
 from PIL import Image, ImageOps, ImageFilter
 from tqdm import tqdm
+from sklearn.model_selection import train_test_split
 
 import torch
 from .base import BaseDataset
@@ -44,16 +45,17 @@ class VOCLocKxSegmentation(BaseDataset):
         # print(f"test  size: + data={len(test_data)} , label={len(test_label)}")
         # m_test_dataset = np.load(self.INPUT + '/seismic-facies/data_test_1.npz', allow_pickle=True, mmap_mode='r')['data']
         # m_test_labels = np.load( self.INPUT + '/seimic-data/sample_submission_1.npz', allow_pickle=True, mmap_mode='r')['prediction']
-
+        m_train_dataset, m_test_dataset, m_train_labels, m_test_labels = train_test_split(
+            m_train_dataset, m_train_labels, test_size = 0.2, random_state = 42)
         print("Run NAS UNet from LOC KX")
         self.joint_transform = None
 
         if self.mode == 'train':
             self.train_dataset = m_train_dataset
             self.train_labels = m_train_labels
-        # elif self.mode == 'val':
-        #     self.train_dataset = m_train_dataset
-        #     self.train_labels = m_train_labels
+        elif self.mode == 'val':
+            self.train_dataset = m_test_dataset
+            self.train_labels = m_test_labels
         # elif self.mode == 'test':
         #     self.images = []
         #     return
