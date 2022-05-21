@@ -7,7 +7,6 @@ from tqdm import tqdm
 
 import torch
 from .base import BaseDataset
-from ..Data import train_validate_test_split
 
 
 class VOCLocKxSegmentation(BaseDataset):
